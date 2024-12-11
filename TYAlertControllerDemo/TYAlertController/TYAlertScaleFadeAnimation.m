@@ -57,7 +57,10 @@
 - (void)dismissAnimateTransition:(id<UIViewControllerContextTransitioning>)transitionContext
 {
     TYAlertController *alertController = (TYAlertController *)[transitionContext viewControllerForKey:UITransitionContextFromViewControllerKey];
-    
+    if(![alertController isKindOfClass:[TYAlertController class]])
+    {
+        return;
+    }
     [UIView animateWithDuration:[self transitionDuration:transitionContext] animations:^{
         alertController.backgroundView.alpha = 0.0;
         switch (alertController.preferredStyle) {
